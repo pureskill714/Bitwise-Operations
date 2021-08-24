@@ -1,0 +1,30 @@
+//This function takes a single decimal integer as parameter and convers it to a binary number. The function does not return any value.
+
+decimal_to_binary(int a){
+    int k = 0, j = 0;
+    int binaryArray[20];
+
+    //Setting all binaryArray for int a elements to -1
+    for (int i = 0; i < 20; i++){
+        binaryArray[i] = -1;}
+
+    //Converting decimal to binary (MSB and LSB not in right order)for int a
+    while (a >= 1){
+        binaryArray[k] = a%2;
+        a = a/2;
+        k++;
+    }
+
+    //Making the MSB and LSB in the right order for int a
+    for (int i = 19; i >= 0; i--){
+        if (binaryArray[i] != -1){
+        printf("%d",binaryArray[i]);
+        }
+    }
+}
+
+int main() {
+    decimal_to_binary(12);
+
+    return 0;
+}
