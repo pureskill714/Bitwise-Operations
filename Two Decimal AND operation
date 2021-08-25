@@ -1,0 +1,209 @@
+//This function takes two decimal integers as parameters, converts them to binary, performs an AND operation and returns back the result as a decimal value
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int decimal_AND(int a,int b){
+    int a2,b2;
+    int k = 0, m = 1, j = -1;
+    int AND = 0;
+
+    //Arrays used for int a
+    int binaryArray[20];
+    int binaryTransfer[20];
+    int reverse[20];
+    int reverseFinal[20];
+
+    //Arrays used for int b
+    int binaryArray2[20];
+    int binaryTransfer2[20];
+    int reverse2[20];
+    int reverseFinal2[20];
+
+    int binaryAND[20]; //Array used for the AND operation result
+    int decimalAND[20]; //Array used for the AND operation result (In Decimal)
+
+////////////////////////////////////////START OF FIRST INTEGER//////////////////////////////////////////////
+
+    //Setting all binaryArray for int a elements to -1
+    for (int i = 0; i < 20; i++){
+        binaryArray[i] = -1;}
+
+    //Setting all binaryTransfer elements to -1
+    for (int i = 0; i < 20; i++){
+        binaryTransfer[i] = -1;}
+
+    //Setting all reverseFinal elements to -1
+    for (int i = 0; i < 20; i++){
+        reverseFinal[i] = -1;}
+
+    a2 = a;
+
+    //Converting decimal to binary (MSB and LSB not in right order)for int a
+    while (a >= 1){
+        binaryArray[k] = a%2;
+        a = a/2;
+        k++;
+    }
+    k = 0;
+
+    //Making the MSB and LSB in the right order for int a
+    for (int i = 19; i >= 0; i--){
+        if (binaryArray[i] != -1){
+        binaryTransfer[k] = binaryArray[i];
+        k++;
+        }
+    }
+    k = 0;
+
+    //reversing the array. Making -1 to the front for int a
+    for (int i = 19; i >= 0; i--){
+        reverse[k] = binaryTransfer[i];
+        k++;
+    }
+    k = 0;
+
+
+
+    //Finalizing the array in the correct sequence for int a
+    for (int i = 0; i < 20; i++){
+            if (reverse[i] != -1){
+                reverseFinal[i] = binaryTransfer[j];
+                j--;}
+    }
+    j = -1;
+
+    //changing all the -1 to 0 for int a
+    for (int i = 0; i < 20; i++){
+        if (reverseFinal[i] == -1){
+            reverseFinal[i] = 0;
+        }
+    }
+
+
+
+//////////////////////////////////////END OF FIRST INTEGER AND START OF SECOND INTEGER///////////////////////////////////////////////
+
+//Setting all binaryArray for int b elements to -1
+    for (int i = 0; i < 20; i++){
+        binaryArray2[i] = -1;}
+
+    //Setting all binaryTransfer2 elements to -1
+    for (int i = 0; i < 20; i++){
+        binaryTransfer2[i] = -1;}
+
+    //Setting all reverseFinal2 elements to -1
+    for (int i = 0; i < 20; i++){
+        reverseFinal2[i] = -1;}
+
+    b2 = b;
+
+    //Converting decimal to binary (MSB and LSB not in right order)for int b
+    while (b >= 1){
+        binaryArray2[k] = b%2;
+        b = b/2;
+        k++;
+    }
+    k = 0;
+
+    //Making the MSB and LSB in the right order for int b
+    for (int i = 19; i >= 0; i--){
+        if (binaryArray2[i] != -1){
+        binaryTransfer2[k] = binaryArray2[i];
+        k++;
+        }
+    }
+    k = 0;
+
+    //reversing the array. Making -1 to the front for int b
+    for (int i = 19; i >= 0; i--){
+        reverse2[k] = binaryTransfer2[i];
+        k++;
+    }
+    k = 0;
+
+
+
+    //Finalizing the array in the correct sequence for int b
+    for (int i = 0; i < 20; i++){
+            if (reverse2[i] != -1){
+                reverseFinal2[i] = binaryTransfer2[j];
+                j--;}
+    }
+    j = -1;
+
+    //changing all the -1 to 0 for int b
+    for (int i = 0; i < 20; i++){
+        if (reverseFinal2[i] == -1){
+            reverseFinal2[i] = 0;
+        }
+    }
+
+////////////////////END OF SECOND INTEGER AND START OF AND OPERATION//////////////////////////////////
+
+//Creating the AND operation for the two integers a and b
+    for (int i = 0; i < 20; i++){
+    if (reverseFinal[i] == 1 && reverseFinal2[i] == 1){
+        binaryAND[i] = 1;}
+    else {
+        binaryAND[i] = 0;}
+    }
+
+//Changing all the MSB 0 to 5 for binaryAND[]
+    for (int i = 0; i < 20; i++){
+            if (binaryAND[i] == 0){
+                binaryAND[i] = 5;
+            }
+            else if (binaryAND[i] == 1){
+                break;
+            }
+            k++;
+    }
+    k = 0;
+
+//Changing all elements in decimalAND to 5
+    for (int i = 0; i < 20; i++){
+        decimalAND[i] = 5;}
+
+//filling up the AND result but to the front of the array
+    for (int i = 0; i < 20; i++){
+            if (binaryAND[i] != 5){
+                decimalAND[k] = binaryAND[i];
+                k++;}
+        }
+        k = 0;
+
+//Calculating how many bits used for the AND result
+    for (int i = 0; i < 20; i++){
+        if (decimalAND[i] != 5){
+            k++;
+        }
+    }
+
+//AND is the decimal number of the AND result
+    for (int i = 0; i < k; i++){
+    AND = AND + decimalAND[i]*pow(2,k-m);
+    m++;}
+
+    k = 0;
+    m = 1;
+
+//////////////////////END OF AND OPERATION AND START OF PRINT STATEMENTS//////////////////////////////
+
+    for (int i = 0; i < 20; i++){
+        if (binaryAND[i] == 5){
+            binaryAND[i] = 0;
+        }
+    }
+
+    return AND;
+}
+
+int main() {
+int ANDresult;
+ANDresult = decimal_AND(11,12);
+printf("%d",ANDresult);
+
+return 0;
+}
