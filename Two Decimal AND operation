@@ -1,3 +1,5 @@
+
+
 int decimal_AND(int a,int b){
     int power(int base,int exponent){
     int result = 1;
@@ -212,3 +214,14 @@ int decimal_AND(int a,int b){
     return AND;
 
 }
+
+
+int main(){
+
+int result = decimal_AND(25,40);
+printf("%d",result);
+
+return 0;
+
+}
+
