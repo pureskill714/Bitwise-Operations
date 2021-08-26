@@ -1,4 +1,4 @@
-
+//This function takes two decimal integers as parameters, converts them to binary, performs an AND operation and returns back the result as a decimal value
 
 int decimal_AND(int a,int b){
     int power(int base,int exponent){
