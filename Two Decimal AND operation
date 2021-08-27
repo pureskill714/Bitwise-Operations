@@ -88,11 +88,11 @@ int two_decimal_numbers_AND(int a,int b){
            m++;
        }
     return DecimalANDresult;
-
-
 }
 
 int main()
 {
-    two_decimal_numbers_AND(5,4);
+    int answer = two_decimal_numbers_AND(40,50);
+    printf("%d",answer);
+
 }
