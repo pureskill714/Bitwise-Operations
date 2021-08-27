@@ -87,8 +87,7 @@ int two_decimal_numbers_AND(int a,int b){
            j--;
            m++;
        }
-       printf("%d",DecimalANDresult);
-    return 0;
+    return DecimalANDresult;
 
 
 }
