@@ -1,0 +1,92 @@
+////This function takes two decimal integers as parameters, converts them to binary, performs an OR operation and returns back the result as a decimal value
+
+int two_decimal_numbers_OR(int a,int b){
+    int a2,b2;
+    int k = 0, j = 49, m = 0;
+    int binaryArray[50],binaryArray2[50],ORresultArray[50];
+    int DecimalORresult = 0;
+
+    //Setting all binaryArray for int a elements to -1
+    for (int i = 0; i < 50; i++){
+        binaryArray[i] = -1;}
+
+    //Setting all binaryArray2 for int a elements to -1
+    for (int i = 0; i < 50; i++){
+        binaryArray2[i] = -1;}
+    a2 = a;
+    b2 = b;
+
+    //Converting decimal to binary for int a
+    while (a >= 1){
+        binaryArray[k] = a%2;
+        a = a/2;
+        k++;
+    }
+    k = 0;
+    for (int i = 0; i < 50; i++){
+            if (binaryArray[i] != -1){
+                binaryArray[j] = binaryArray[i];
+                j--;
+            }
+    }
+    for (int i = 0; i < 50; i++){
+            if (binaryArray[i] == -1){
+                break;
+            }
+        k++;
+    }
+    for (int i = 0; i < 50-k; i++){
+            binaryArray[i] = 0;
+    }
+    k = 0;
+    j = 49;
+
+    //Converting decimal to binary for int b
+    while (b >= 1){
+        binaryArray2[k] = b%2;
+        b = b/2;
+        k++;
+    }
+    k = 0;
+    for (int i = 0; i < 50; i++){
+            if (binaryArray2[i] != -1){
+                binaryArray2[j] = binaryArray2[i];
+                j--;
+            }
+    }
+    for (int i = 0; i < 50; i++){
+            if (binaryArray2[i] == -1){
+                break;
+            }
+        k++;
+    }
+    for (int i = 0; i < 50-k; i++){
+            binaryArray2[i] = 0;
+    }
+    k = 0;
+    j = 49;
+
+    //Creating the OR operation for the two integers a and b
+    for (int i = 0; i < 50; i++){
+    if (binaryArray[i] == 1 || binaryArray2[i] == 1){
+        ORresultArray[i] = 1;}
+    else {
+        ORresultArray[i] = 0;}
+    }
+
+       for (int i = 0; i < 50; i++){
+            if (ORresultArray[i] == 1){
+                break;
+            }
+            k++;
+       }
+       m = k;
+
+       for (int i = 0; i < 50-k; i++){
+           DecimalORresult = DecimalORresult + ORresultArray[j]*pow(2,abs(k-m));
+           j--;
+           m++;
+       }
+    return DecimalORresult;
+}
+
