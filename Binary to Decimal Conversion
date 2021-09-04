@@ -1,0 +1,26 @@
+//This function takes a binary number as integer input, converts it to decimal and returns the result
+#include <stdio.h>
+#include <stdlib.h>
+
+int binaryToDecimal(int binaryInput){
+    int rem = 0, decimal_num = 0, num;
+    int base = 1;
+
+    num = binaryInput;
+
+    while ( num > 0)
+    {
+        rem = num % 10; /* divide the binary number by 10 and store the remainder in rem variable. */
+        decimal_num = decimal_num + rem * base;
+        num = num / 10; // divide the number with quotient
+        base = base * 2;
+    }
+   return decimal_num;
+}
+
+int main()
+{
+    int result = binaryToDecimal(1100);
+    printf("%d",result);
+
+}
